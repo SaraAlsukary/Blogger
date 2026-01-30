@@ -1,4 +1,4 @@
-import { assets, blog_data } from '@/assets/assets'
+import { assets } from '@/assets/assets'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import { getBlogs } from '@/lib/queries/getBlogs'

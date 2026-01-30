@@ -1,13 +1,11 @@
-import { text, serial, varchar, boolean, timestamp, integer, pgTable, date } from "drizzle-orm/pg-core";
+import { text, serial, varchar, pgTable, date } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
-// import { blob } from "stream/consumers";
 
 export const users = pgTable('users', {
     id: varchar('id').primaryKey(),
     name: varchar('name').notNull(),
     email: varchar('email').notNull(),
     image: varchar('image')
-    // password: varchar('email').notNull(),
 })
 
 
@@ -25,7 +23,6 @@ export const blogs = pgTable('blogs', {
 })
 
 
-// Create relations 
 export const usersRelations = relations(users,
     ({ many }) => ({
         blogs: many(blogs)

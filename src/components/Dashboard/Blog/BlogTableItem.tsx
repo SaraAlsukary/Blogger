@@ -3,7 +3,6 @@ import { TBlog } from '@/types/dataBlogType'
 import Image from 'next/image'
 import { ConfirmDialog } from '@/components/ConfirmDialog'
 import React from 'react'
-import { deleteBlog } from '@/lib/queries/deleteBlogs'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 import { useRouter } from "next/navigation";
@@ -26,22 +25,19 @@ const BlogTableItem = ({ image, title, date, author, id }: TProps) => {
                     ),
                 },
                 success: {
-                    render({ data: responseData }) {
+                    render() {
                         return `'Blog Deleted Successfully!'!`;
                     },
-                    // other options like icon can go here
                     icon: () => <div className="text-green-500 text-lg">🟢</div>,
                 },
                 error: {
-                    render({ data: error }) {
-                        // When the promise rejects, data contains the error
+                    render() {
                         return `Failed To  Deleted Blog!: Please try again`;
                     },
                     icon: () => <div className="text-red-500 text-lg">❌</div>,
                 },
             },
             {
-                // Optional: Global options for the toast
                 position: "top-right",
             }
         );

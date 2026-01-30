@@ -78,14 +78,14 @@ const BlogCreationPage = () => {
           ),
         },
         success: {
-          render({ data: responseData }) {
+          render() {
             return `Blog uploaded successfully!`;
           },
           // other options like icon can go here
           icon: () => <div className="text-green-500 text-lg">🟢</div>,
         },
         error: {
-          render({ data: error }) {
+          render() {
             // When the promise rejects, data contains the error
             return `Upload failed: Please try again`;
           },
@@ -125,7 +125,7 @@ const BlogCreationPage = () => {
       <p className='text-xl mt-4'>Blog Title</p>
       <input
         name='title'
-        value={data.title}
+        value={data.title!}
         onChange={onChangeHandler}
         className='w-full sm:w-[500px] mt-4 px-4 py-3 border'
         type="text"
@@ -137,7 +137,7 @@ const BlogCreationPage = () => {
       <p className='text-xl mt-4'>Blog Description</p>
       <textarea
         name='description'
-        value={data.description}
+        value={data.description!}
         onChange={onChangeHandler}
         className='w-full sm:w-[500px] mt-4 px-4 py-3 border'
         required
@@ -149,7 +149,7 @@ const BlogCreationPage = () => {
       <select
         onChange={onChangeHandler}
         name="category"
-        value={data.category}
+        value={data.category!}
         className='w-40 mt-4 px-4 py-3 border text-gray-500'
       >
         <option value="Startup">Startup</option>
