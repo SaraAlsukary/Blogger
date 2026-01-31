@@ -2,10 +2,17 @@
 
 import React, { FormEvent, useState } from "react";
 import Header from "./Header";
-import { TBlog } from "@/types/dataBlogType";
 import BlogList from "./Blog/BlogList";
 import Loading from "./Loading";
-
+export type TBlog = {
+    id:number;
+    title: string | null;
+    description: string | null;
+    category: string | null;
+    author: string | null;
+    date: string | null;
+    image: string | null;
+};
 const Main = ({ blogs }: { blogs: TBlog[] }) => {
     const [searchInput, setSearchInput] = useState("");
     const [search, setSearch] = useState("");

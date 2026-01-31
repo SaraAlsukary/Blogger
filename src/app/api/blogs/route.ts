@@ -34,12 +34,11 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
     try {
-        const formData = await request.formData(); // Added parentheses
+        const formData = await request.formData(); 
         const timestamp = Date.now();
 
-        const image = formData.get('image') as File | null; // Type assertion
+        const image = formData.get('image') as File | null; 
 
-        // Validate required fields
         const title = formData.get('title')?.toString();
 
         const description = formData.get('description')?.toString();
@@ -53,7 +52,6 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Validate image type
         if (!image.type.startsWith('image/')) {
             return NextResponse.json(
                 { error: "File must be an image" },
@@ -61,25 +59,22 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Process image
         const imageBytes = await image.arrayBuffer();
         const buffer = Buffer.from(imageBytes);
 
-        // Use public directory path (consider using uploads folder)
         const fileName = `${timestamp}_${image.name}`;
-        const path = `./public/uploads/${fileName}`; // Added uploads folder
+        const path = `./public/uploads/${fileName}`; 
 
-        // Create directory if it doesn't exist (you might want to handle this differently)
         await writeFile(path, buffer);
 
-        const imageUrl = `/uploads/${fileName}`; // Updated path
+        const imageUrl = `/uploads/${fileName}`; 
 
         const blogData: TBlog = {
             title,
             description,
             category,
             author,
-            date: new Date(), // Use Date object instead of timestamp
+            date: new Date().toISOString().split("T")[0],
             image: imageUrl
         };
 

@@ -2,10 +2,17 @@
 
 import { useState, useMemo } from "react";
 import BlogItem from "@/components/Blog/BlogItem";
-import { TBlog } from "@/types/dataBlogType";
 
 const categories = ["All", "Technology", "Startup", "Lifestyle"];
-
+export type TBlog = {
+    id:number,
+    title: string | null;
+    description: string | null;
+    category: string | null;
+    author: string | null;
+    date: string | null;
+    image: string | null;
+};
 type TProps = {
     blogs: TBlog[];
     search: string; // only ONE search field

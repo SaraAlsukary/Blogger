@@ -1,8 +1,15 @@
 import { assets } from '@/assets/assets'
-import { TBlog } from '@/types/dataBlogType'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+export type TBlog = {
+    id:number,
+    title: string;
+    description: string;
+    category: string;
+    date?: string;
+    image?: string;
+};
 type Props = TBlog
 const BlogItem = ({ title, category, description, image, id }: Props) => {
     return (

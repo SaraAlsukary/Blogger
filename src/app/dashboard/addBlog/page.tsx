@@ -1,6 +1,5 @@
 'use client'
 import { assets } from '@/assets/assets'
-import { TBlog } from '@/types/dataBlogType'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import Image from 'next/image'
@@ -10,7 +9,7 @@ import { useUser } from '@clerk/nextjs'
 const BlogCreationPage = () => {
   const [image, setImage] = useState<File | null>(null)
   const [isPending, setIsPending] = useState(false)
-  const [data, setData] = useState<TBlog>({
+  const [data, setData] = useState({
     title: '',
     description: '',
     category: 'Startup',
@@ -20,7 +19,7 @@ const BlogCreationPage = () => {
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
-    setData(prev => ({ ...prev, [name]: value }))
+    setData((prev:any) => ({ ...prev, [name]: value }))
   }
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,7 +66,6 @@ const BlogCreationPage = () => {
     formData.append('author', user.id);
     formData.append('image', image);
 
-    // Use toast.promise to handle the API call
     await toast.promise(
       axios.post('/api/blogs', formData),
       {
@@ -81,19 +79,16 @@ const BlogCreationPage = () => {
           render() {
             return `Blog uploaded successfully!`;
           },
-          // other options like icon can go here
           icon: () => <div className="text-green-500 text-lg">🟢</div>,
         },
         error: {
           render() {
-            // When the promise rejects, data contains the error
             return `Upload failed: Please try again`;
           },
           icon: () => <div className="text-red-500 text-lg">❌</div>,
         },
       },
       {
-        // Optional: Global options for the toast
         position: "top-right",
       }
     );

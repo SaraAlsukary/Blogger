@@ -1,11 +1,19 @@
 'use client'
-import { TBlog } from '@/types/dataBlogType'
 import Image from 'next/image'
 import { ConfirmDialog } from '@/components/ConfirmDialog'
 import React from 'react'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 import { useRouter } from "next/navigation";
+export type TBlog = {
+    id: number,
+    title: string;
+    description?: string;
+    author?:string;
+    category?: string;
+    date?: string;
+    image?: string;
+};
 type TProps = TBlog & {
     authorImage: string,
 }
