@@ -5,7 +5,12 @@ import { toast } from 'react-toastify'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { useUser } from '@clerk/nextjs'
-
+type TData={
+  title: string,
+  description: string,
+  category: string,
+  author: string;
+}
 const BlogCreationPage = () => {
   const [image, setImage] = useState<File | null>(null)
   const [isPending, setIsPending] = useState(false)
@@ -19,7 +24,7 @@ const BlogCreationPage = () => {
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
-    setData((prev:any) => ({ ...prev, [name]: value }))
+    setData((prev: TData) => ({ ...prev, [name]: value }))
   }
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
